@@ -31,7 +31,11 @@ def write_to_file(response):
         file.write('\n!!!\n')
     return response
 
+
+company_name = 'Apple'
+
 erase_file()
+
 
 # clear response.txt
 with open("./txt/response.txt", "w") as file: 1
@@ -47,3 +51,4 @@ with open("./txt/q_output.txt", "r") as file:
     for q in questions:
         print(q)
         write_to_file(ask(q, company, resume))
+

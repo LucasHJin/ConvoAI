@@ -4,9 +4,13 @@ import speech_recognition as sr
 import soundfile as sf
 
 sample_rate = 44100
-duration = 3
+duration = 20
 
 recognizer = sr.Recognizer()
+
+def erase_file():
+    with open("./txt/output.txt", "w") as f:
+        pass
 
 def record_and_transcribe(output_file, sample_rate):
     while True:            
@@ -27,5 +31,7 @@ def record_and_transcribe(output_file, sample_rate):
         except sr.RequestError as e:
             print(f"Could not request results from Google Speech Recognition service; {e}")
 
+
+erase_file()
 output_file = "./txt/output.txt"
 record_and_transcribe(output_file, sample_rate)
