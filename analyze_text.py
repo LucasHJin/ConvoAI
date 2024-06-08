@@ -37,7 +37,9 @@ def is_question(text):
         r"\bcould you\b",
         r"\bwhat is\b",
         r"\bwhat are\b",
-        r"\bstate\b"
+        r"\bstate\b",
+        r"\did you\b",
+        r"\do you\b"
     ]
 
     #combining and checking against it
