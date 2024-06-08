@@ -4,7 +4,7 @@ import speech_recognition as sr
 import soundfile as sf
 
 sample_rate = 44100
-duration = 20
+duration = 15
 
 recognizer = sr.Recognizer()
 
