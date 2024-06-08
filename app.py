@@ -23,6 +23,15 @@ def start_recording():
         return jsonify(success=True)
     except Exception as e:
         return jsonify(success=False, error=str(e))
+    
+@app.route('/stop-recording', methods=['POST'])
+def stop_recording():
+    try:
+        with open("stop.txt", "w") as f:
+            pass  # create an empty stop file
+        return jsonify(success=True)
+    except Exception as e:
+        return jsonify(success=False, error=str(e))
 
 @app.route('/upload', methods=['POST'])
 def upload():
@@ -61,5 +70,5 @@ def clear_folder(folder_path):
             print(f"Failed to delete {file_path}. Reason: {e}")
 
 if __name__ == '__main__':
-    extra_files = ['./a_output.txt', './q_output.txt']
+    extra_files = ['./response.txt', './q_output.txt', './output.txt']
     app.run(debug=True, extra_files=extra_files)
