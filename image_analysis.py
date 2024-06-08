@@ -3,9 +3,11 @@ import requests
 import os
 import openai
 from dotenv import load_dotenv
-
 load_dotenv()
 openai.api_key = os.getenv('OPENAI_API_KEY')
+model = "gpt-3.5-turbo"
+# USE FOR DEMO
+# model = "gpt-4o"
 
 # Function to encode the image
 def encode_image(image_path):
@@ -22,7 +24,7 @@ def analyze(image_path, prompt):
     }
 
     payload = {
-    "model": "gpt-4o",
+    "model": model,
     "messages": [
         {
         "role": "user",
@@ -40,7 +42,7 @@ def analyze(image_path, prompt):
         ]
         }
     ],
-    "max_tokens": 300
+    "max_tokens": 500
     }
     return requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload).json()
 
@@ -48,7 +50,7 @@ uploads_folder = 'uploads'
 first_file = next(iter(os.listdir(uploads_folder)), None)
 if first_file:
     file_path = os.path.join(uploads_folder, first_file)
-print(file_path)
+# print(file_path)
 response = analyze(file_path, "Summarize the main points of this resume.")
 with open('resume_info.txt', 'w') as file:
     file.write(response["choices"][0]["message"]["content"])
