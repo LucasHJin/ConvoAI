@@ -10,6 +10,10 @@ def erase_file():
     with open("./txt/output.txt", "w") as f:
         pass
 
+def erase_file2():
+    with open("./txt/response.txt", "w") as f:
+        pass
+
 def get_input():
     try:
         with sr.Microphone() as source2: # microphone input
@@ -40,6 +44,8 @@ def give_string(text):
 
 # starting the recording
 erase_file()
+erase_file2()
+
 stop_file = "stop.txt"
 
 while not os.path.exists(stop_file):

@@ -25,30 +25,22 @@ def write_to_file(response):
     # print(response)
     # this code removes newlines
     # response = ''.join([line for line in response.split('\n') if line.strip()])
-
     with open('./txt/response.txt', 'a') as file:
         file.write(response)
         file.write('\n!!!\n')
     return response
 
-
-company_name = 'Apple'
-
-erase_file()
-
+# erase_file()
 
 # clear response.txt
 with open("./txt/response.txt", "w") as file: 1
 
 company = 'RBC'
-resume = 'ERROR!'
-with open("./txt/resume_info.txt", "r") as file:
-    # Read the contents of the file into the variable 'resume'
-    resume = file.read()
+# resume = 'ERROR!'
+# with open("./txt/resume_info.txt", "r") as file:
+#     # Read the contents of the file into the variable 'resume'
+#     resume = file.read()
 
-with open("./txt/q_output.txt", "r") as file:
-    questions = file.read().split('\n')
-    for q in questions:
-        print(q)
-        write_to_file(ask(q, company, resume))
-
+# with open("./txt/q_output.txt", "r") as file:
+#     q = file.read().split('\n')[-1]
+#     write_to_file(ask(q, company, resume))

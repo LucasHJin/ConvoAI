@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>ConvoAI</title>
     <link href="{{url_for('static',filename='css/main.css')}}" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
@@ -26,33 +27,21 @@
          class="w-72 text-red-600 hover:text-white border border-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-500 font-medium rounded-lg text-md px-5 py-2.5 text-center me-2 mb-32 mt-4">Click
         to stop recording</button>
     </div>
-    <div class="flex flex-col justify-center items-center" id="qa-container">
-        {% for question, answer in qa_pairs %}
-        <div class="bg-sky-700 p-2 border border-2 rounded-lg border-gray-200 w-3/5 mb-4">
-            <p class="text-white text-2xl mb-8">
-                <strong>Question:</strong> {{ question }}
-            </p>
-            <p class="text-white text-2xl mb-8">
-                <strong>Answer:</strong> {{ answer }}
-            </p>
+    <div class="flex flex-col justify-center items-center">
+        <div id="qa-container" class="bg-sky-700 p-2 border border-2 rounded-lg border-gray-200 w-3/5 mb-4">
+            <!-- {% for question, answer in qa_pairs %}
+            <div class="bg-sky-700 p-2 border border-2 rounded-lg border-gray-200 w-3/5 mb-4">
+                <p class="text-white text-xl mb-8">
+                    <strong>Question:</strong> {{ question |safe }}
+                </p>
+                <p class="text-white text-xl mb-8">
+                    <strong>Answer:</strong> {{ answer |safe }}
+                </p>
+            </div>
+            {% endfor %} -->
         </div>
-        {% endfor %}
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
     <script>
-        var socket = io();
-
-        socket.on('new_qa', function(data) {
-            var container = document.getElementById('qa-container');
-            var qaDiv = document.createElement('div');
-            qaDiv.classList.add('bg-sky-700', 'p-2', 'border', 'border-2', 'rounded-lg', 'border-gray-200', 'w-3/5', 'mb-4');
-            qaDiv.innerHTML = `
-                <p class="text-white text-2xl mb-8"><strong>Question:</strong> ${data.question}</p>
-                <p class="text-white text-2xl mb-8"><strong>Answer:</strong> ${data.answer}</p>
-            `;
-            container.appendChild(qaDiv);
-        });
-
         document.getElementById("submitResume").addEventListener("click", function() {
             fetch("/submit-resume", {
                 method: "POST"
@@ -64,7 +53,6 @@
                 }
             });
         });
-
         document.getElementById("recordButton").addEventListener("click", function() {
             fetch("/start-recording", {
                 method: "POST"
@@ -76,7 +64,6 @@
                 }
             });
         });
-
         document.getElementById("stopButton").addEventListener("click", function() {
             fetch("/stop-recording", {
                 method: "POST"
@@ -88,6 +75,20 @@
                 }
             });
         });
+        function loadQA() {
+            $.getJSON('/data', function(data) {
+                $('#qa-container').empty();
+                data.forEach(function(qa) {
+                    $('#qa-container').append('<p class="text-white" ><strong>Q:</strong> ' + qa[0] + '<br><strong>A:</strong> ' + qa[1] + '</p>');
+                });
+            });
+        }
+
+        $(document).ready(function() {
+            loadQA();
+            setInterval(loadQA, 1000); // Update every 5 seconds
+        });
     </script>
 </body>
+
 </html>

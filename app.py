@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, jsonify
 from flask_socketio import SocketIO, emit
 import os
 import subprocess
+import threading
 
 app = Flask(__name__)
 socketio = SocketIO(app)
@@ -9,17 +10,24 @@ socketio = SocketIO(app)
 def read_file(filepath):
     with open(filepath, 'r') as file:
         return [line.strip() for line in file.readlines()]
-
+    
 def read_file2(filepath):
     with open(filepath, 'r') as file:
         return [line for line in file.read().split('!!!')]
+    
+def get_questions_and_answers():
+    questions = read_file('./txt/q_output.txt')
+    answers = read_file2('./txt/response.txt')
+    return list(zip(questions, answers))
 
 @app.route('/')
 def index():
-    questions = read_file('./txt/q_output.txt')
-    answers = read_file2('./txt/response.txt')
-    qa_pairs = zip(questions, answers)
-    return render_template('index.html', qa_pairs=qa_pairs)
+    return render_template('index.html')
+
+@app.route('/data')
+def data():
+    qa_data = get_questions_and_answers()
+    return jsonify(qa_data)
 
 @app.route('/submit-resume', methods=['POST'])
 def submit_resume():
@@ -32,10 +40,10 @@ def submit_resume():
 @app.route('/start-recording', methods=['POST'])
 def start_recording():
     try:
-        subprocess.Popen(["python", "./audio_capture/analyze_text.py"])
-        subprocess.Popen(["python", "./audio_capture/voice_input.py"])
+        subprocess.Popen(["python", "./audio_capture/computer_vinput.py"])
+        # subprocess.Popen(["python", "./audio_capture/analyze_text.py"])
+        # subprocess.Popen(["python", "./audio_capture/voice_input.py"])
         subprocess.Popen(["python", "./audio_capture/text_answers.py"])
-        subprocess.Popen(["python", "./audio_capture/parse.py"])
         return jsonify(success=True)
     except Exception as e:
         return jsonify(success=False, error=str(e))
@@ -79,5 +87,19 @@ def clear_folder(folder_path):
         except Exception as e:
             print(f"Failed to delete {file_path}. Reason: {e}")
 
+def background_task():
+    with app.app_context():
+        while True:
+            try:
+                subprocess.Popen(["python", "./audio_capture/parse_questions_chat.py"])
+                return jsonify(success=True)
+            except Exception as e:
+                return jsonify(success=False, error=str(e))
+
+
 if __name__ == '__main__':
+    thread = threading.Thread(target=background_task)
+    thread.daemon = True
+    thread.start()
+
     socketio.run(app, debug=True)
