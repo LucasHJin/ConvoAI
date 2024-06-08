@@ -1,7 +1,8 @@
-#recognize voices and take in
+# recognize_voices.py
 import speech_recognition as sr
 import pyttsx3 
-
+import os
+import time
 
 r = sr.Recognizer() 
 
@@ -10,46 +11,44 @@ def erase_file():
         pass
 
 def get_input():
-    while (1):
-        try:
-            with sr.Microphone() as source2: #microphone input
-                r.adjust_for_ambient_noise(source2, duration=0.2) #prepare for ambient noise
+    try:
+        with sr.Microphone() as source2: # microphone input
+            r.adjust_for_ambient_noise(source2, duration=0.2) # prepare for ambient noise
 
-                #audio input
-                audio2 = r.listen(source2)
+            # audio input
+            audio2 = r.listen(source2)
 
-                #try to convert to string
-                gottenText = r.recognize_google(audio2)
-                gottenText = gottenText.lower()
+            # try to convert to string
+            gottenText = r.recognize_google(audio2)
+            gottenText = gottenText.lower()
 
-                return gottenText
+            return gottenText
 
-        #cases where audio can't be understood
-        except sr.RequestError as e:
-            print("Could not request results; {0}".format(e))
-            
-        except sr.UnknownValueError:
-            print("unknown error occurred")
+    # cases where audio can't be understood
+    except sr.RequestError as e:
+        print("Could not request results; {0}".format(e))
+         
+    except sr.UnknownValueError:
+        print("unknown error occurred")
 
-    return
+    return None
 
 def give_string(text):
-    #add text to a file
-    f = open("output.txt", "a")
+    # add text to a file
+    with open("output.txt", "a") as f:
+        f.write(text + "\n")
 
-    f.write(text)
-    f.write("\n")
-    f.close()
-
-    return
-
-
-#starting the recording
-
+# starting the recording
 erase_file()
+stop_file = "stop.txt"
 
-while (1):
+while not os.path.exists(stop_file):
     text = get_input()
-    give_string(text)
+    if text:
+        give_string(text)
+        print("Wrote Text")
+    time.sleep(1)  # sleep for a bit to avoid busy waiting
 
-    print("Wrote Text")
+# Cleanup: Remove the stop file after stopping
+os.remove(stop_file)
+print("Recording stopped.")
