@@ -12,7 +12,7 @@ def encode_image(image_path):
   with open(image_path, "rb") as image_file:
     return base64.b64encode(image_file.read()).decode('utf-8')
 
-def analyse(image_path, prompt):
+def analyze(image_path, prompt):
     # Getting the base64 string
     base64_image = encode_image(image_path)
 
@@ -44,4 +44,12 @@ def analyse(image_path, prompt):
     }
     return requests.post("https://api.openai.com/v1/chat/completions", headers=headers, json=payload).json()
 
-print(analyse(r"test_image.webp", "Summarize the main points of this resume."))
+uploads_folder = 'uploads'
+first_file = next(iter(os.listdir(uploads_folder)), None)
+if first_file:
+    file_path = os.path.join(uploads_folder, first_file)
+print(file_path)
+response = analyze(file_path, "Summarize the main points of this resume.")
+with open('resume_info.txt', 'w') as file:
+    file.write(response["choices"][0]["message"]["content"])
+
