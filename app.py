@@ -10,16 +10,16 @@ def read_file(filepath):
 
 @app.route('/')
 def index():
-    questions = read_file('q_output.txt')
-    answers = read_file('response.txt')
+    questions = read_file('./txt/q_output.txt')
+    answers = read_file('./txt/response.txt')
     qa_pairs = zip(questions, answers)
     return render_template('index.html', qa_pairs=qa_pairs)
 
 @app.route('/start-recording', methods=['POST'])
 def start_recording():
     try:
-        subprocess.Popen(["python", "./analyze_text.py"])
-        subprocess.Popen(["python", "./voice_input.py"])
+        subprocess.Popen(["python", "./audio_capture/analyze_text.py"])
+        subprocess.Popen(["python", "./audio_capture/voice_input.py"])
         return jsonify(success=True)
     except Exception as e:
         return jsonify(success=False, error=str(e))
@@ -70,5 +70,5 @@ def clear_folder(folder_path):
             print(f"Failed to delete {file_path}. Reason: {e}")
 
 if __name__ == '__main__':
-    extra_files = ['./response.txt', './q_output.txt', './output.txt']
+    extra_files = ['./txt/response.txt', './txt/q_output.txt', './txt/output.txt']
     app.run(debug=True, extra_files=extra_files)

@@ -19,14 +19,14 @@ def write_to_file(response):
     # this code removes newlines
     response = ''.join([line for line in response.split('\n') if line.strip()])
 
-    with open('response.txt', 'w') as file:
+    with open('./txt/response.txt', 'w') as file:
         file.write(response)
     return response
 
 company_name = 'Apple'
 prompt = 'What is your name?'
 
-with open("resume_info.txt", "r") as file:
+with open("./txt/resume_info.txt", "r") as file:
     # Read the contents of the file into the variable 'resume'
     resume = file.read()
 

@@ -27,5 +27,5 @@ def record_and_transcribe(output_file, sample_rate):
         except sr.RequestError as e:
             print(f"Could not request results from Google Speech Recognition service; {e}")
 
-output_file = "output.txt"
+output_file = "./txt/output.txt"
 record_and_transcribe(output_file, sample_rate)

@@ -50,6 +50,6 @@ if first_file:
     file_path = os.path.join(uploads_folder, first_file)
 print(file_path)
 response = analyze(file_path, "Summarize the main points of this resume.")
-with open('resume_info.txt', 'w') as file:
+with open('./txt/resume_info.txt', 'w') as file:
     file.write(response["choices"][0]["message"]["content"])
 
