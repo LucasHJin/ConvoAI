@@ -10,21 +10,29 @@
 <body>
     <h1 class="p-5 text-sky-700 text-center text-5xl">Welcome to ConvoAI!</h1>
     <div class="flex flex-col justify-center items-center">
+        <form class="flex flex-col">
+            <label class="block mb-2 text-sm font-medium text-sky-700" for="file_input">Upload Resume</label>
+            <input class="block w-full text-sm text-white border border-gray-300 rounded-lg cursor-pointer bg-sky-700 focus:outline-none" aria-describedby="file_input_help" id="file_input" type="file">
+            <p class="mt-1 text-sm text-sky-700" id="file_input_help">PNG, JPG, WEBP.</p>
+            <button
+        class="text-sky-600 hover:text-white border border-sky-600 hover:bg-sky-700 focus:ring-4 focus:outline-none focus:ring-sky-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-8 mt-4" type="submit">
+        Submit Resume</button>
+        </form>
         <button
         class="text-sky-600 hover:text-white border border-sky-600 hover:bg-sky-700 focus:ring-4 focus:outline-none focus:ring-sky-500 font-medium rounded-lg text-md px-5 py-2.5 text-center me-2 mb-32 mt-4">Click
         to begin recording</button>
     </div>
     <div class="flex flex-col justify-center items-center">
+        {% for question, answer in qa_pairs %}
         <div class="bg-sky-700 p-2 border border-2 rounded-lg border-gray-200 w-1/2 mb-4">
-            {% for question, answer in qa_pairs %}
-            <p class="text-white text-lg">
+            <p class="text-white text-2xl mb-8">
                 Question: {{ question }}
             </p>
-            <p class="text-white text-right text-lg mb-8">
+            <p class="text-white text-right text-2xl mb-8">
                 Answer: {{ answer }}
             </p>
-            {% endfor %}
         </div>
+        {% endfor %}
     </div>
 </body>
 
