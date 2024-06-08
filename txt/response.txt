@@ -1,20 +1,4 @@
-Interviewer: Hello Sophia, thank you for joining us today. Can you tell me about your experience in the banking industry?
-
-Sophia: Of course. I have over 8 years of experience as a bank teller, with a strong focus on customer service, transaction management, and a deep understanding of company offerings.
-
-Interviewer: That's impressive. Can you highlight some key skills that you possess?
-
-Sophia: I excel in cash drawer balancing, cash handling, and client management. I am also skilled in complex problem-solving and staff training. Additionally, I have a knack for record-keeping and providing exceptional customer service.
-
-Interviewer: Could you share a bit about your work experience?
-
-Sophia: Certainly. In my current role at Double Star National Bank, I manage vaults, ATMs, TCDs, and TCRs, handling over $200K daily. I process 20+ transactions per hour and assist 50+ customers daily. I also serve as Team Lead in my supervisor's absence.
-
-Interviewer: That's great to hear. Lastly, can you tell me about your education and any honors or awards you've received?
-
-Sophia: I have a Master's degree in Banking and Finance from The University of Philadelphia. I was awarded Bank Teller of the Year in 2019 at Double Star National Bank and received the Employee of the Month award 8 times in 4 years at Bank of Pennsylvania, Lancaster Branch.
-
-Interviewer: Thank you for sharing that information, Sophia. We appreciate your time and look forward to potentially having you join our team at RBC.
-
-Sophia: Thank you for the opportunity. I am excited about the possibility of working with RBC.
+Yes, dynamic programming is a method used in computer science to solve complex problems by breaking them down into simpler subproblems. It involves storing the results of subproblems so that they do not need to be recalculated each time they are encountered. This can greatly improve the efficiency of algorithms and reduce the time complexity of solving a problem.
+!!!
+I believe I am qualified for this position because of my strong proficiency in programming, as demonstrated by my experience in creating various projects using Python, C++, Swift, and Java. I have a solid academic record with a GPA of 4.0 and have been involved in multiple extracurricular activities that have honed my problem-solving and decision-making skills. My experience as a core programmer in both robotics teams and hackathons has given me hands-on experience in tackling real-world challenges and working collaboratively in a team setting. Additionally, my passion for technology and AI aligns well with the innovative culture at RBC.
 !!!

@@ -1,45 +1,47 @@
-**Sophia Smith - Bank Teller Resume Summary:**
-
-- **Profile:**
-  - Experienced bank teller with over 8 years in the banking industry.
-  - Skilled in customer service, transaction management, and company offerings.
-  - Demonstrates strong organizational and analytical skills.
-  - Adaptability in handling various financial transactions in fast-paced environments.
-
-- **Skills:**
-  - Cash Drawer Balancing, Cash Handling, Client Management
-  - Complex Problem-Solving, Staff Training & Development
-  - Record-keeping & Documentation, Exceptional Customer Service
-  - Analytical & Critical Thinking
-
-- **Work Experience:**
-  - **Double Star National Bank (08/2017 - Present)**, Bank Teller in Harrisburg, PA
-    - Managed vaults, ATMs, TCDs, and TCRs, handling over $200K daily.
-    - Processed 20+ transactions per hour, assisting 50+ customers daily.
-    - Established client credibility through accurate information.
-    - Served as Team Lead in supervisor's absence.
-  - **Bank of Pennsylvania, Lancaster Branch (07/2013 - 07/2017)**, Bank Teller/Lead in Lancaster, PA
-    - Improved performance and customer service, increasing client base by 30%.
-    - Provided operational support to the Assistant Manager.
-    - Enhanced customer satisfaction with proactive assistance.
-    - Designed training programs for new employees.
-  - **Blue Verticals Credit Union (01/2013 - 06/2013)**, Banking & Finance Intern in Philadelphia, PA
-
-- **Education:**
-  - M.S. in Banking and Finance, The University of Philadelphia (2010 - 2012)
-
-- **Languages:**
-  - English (Native), Spanish (Full Professional), French (Full Professional)
-
-- **Honors & Awards:**
-  - Bank Teller of the Year (2019), Double Star National Bank
-  - Employee of the Month 8 times in 4 years, Bank of Pennsylvania, Lancaster Branch
-
-- **Interests:**
-  - Meditation, Sustainability, Italian Cuisine, Gardening
-
-- **Contact Information:**
-  - Email: sophia@novoresume.com
-  - Location: Philadelphia, PA
-  - LinkedIn: linkedin.com/in/sophia.smith
-  - Phone: 3123 444 555
+ Lucas Jin 
+ Ottawa, Ontario • (613) 709-2492  Email:  kblaz er20@gmail.c om 
+ Linkedin:  linkedin.c om/in/luc as--jin
+ Github:  github.c om/Luc asHJin 
+ Devpos t:  devpos t.com/kblaz er20 
+ Personable high school junior with excellent interpersonal skills and an interest in technology and AI. Desire to 
+ learn and proficiency in programming demonstrated through outstanding academic record and a multitude of 
+ extracurricular activities. 
+ EDUCATION 
+ Merivale High School, ON 
+ Expected graduation: 2025 
+ GPA: 4.0 
+ ⼀  Flourishing in the International Baccalaureate Program 
+ ⼀  Managing Mock Trial Club activities as an executive. 
+ EXPERIENCE 
+ StudySphere - uOttaHack 6  March/2024 
+ ⼀  Created a studying website for Ottawa’s biggest hackathon. 
+ ⼀  Worked  and  taught  teammates  how  to  implement  various  backend  functionalities  with  Python, 
+ SQLAlchemy and Flask: User authentication, uploading questions and answers, searching questions. 
+ Zenith Workout App  November/2023 - Present 
+ ⼀  Created a passion project for tracking workouts with attention to UI and UX. 
+ ⼀  Implemented using SwiftUI and XCode. 
+ Core Programmer - Sparkling H2O FRC Team 8729  August/2023 - Present 
+ ⼀  Created time-based and command-based programs in Java. 
+ ⼀  Implementing a swerve drivetrain and April tag vision trackers. 
+ Core Programmer - Merivale High School (Vex Robotics)  October/2023 - December/2023 
+ ⼀  Used  C++  to  code  the  autonomous  period  and  commands  for  a  defensive  robot  for  the  Over-Under 
+ competition. 
+ Farm Boy Cashier  May/2023 - July/2023 
+ ⼀  Provided  exceptional  customer  service  by  addressing  inquiries,  resolving  issues,  and  ensuring  a 
+ positive shopping experience. 
+ EcoHacks Hackathon  September/2022 
+ ⼀  Created a website to educate people on recycling for an online hackathon with 600 participants. 
+ ⼀  First  exposure  to  web  development;  performed  research  and  gained  minimal  experience  relating  to 
+ handling databases by learning from teammates using JavaScript and MongoDB. 
+ AWARDS 
+ ⼀  First place in National Mock Trial Competition (  Champions  Cup 2022 - Dominion Mock Trial  ) 
+ ⼀  School Champion (  Fryer Mathematical Competition 2022  - Waterloo  ) 
+ ⼀  60/75 on CCC Junior - Distinction (  Canadian Computing  Contest 2023 - Waterloo  ) 
+ SKILLS  CODING LANGUAGES 
+ ⼀  Teamwork 
+ ⼀  Adaptability 
+ ⼀  Problem solving skills 
+ ⼀  Decision making skills  ⼀  Python (3 years) 
+ ⼀  C++ (1 year) 
+ ⼀  Swift (<1 year) 
+ ⼀  Java (<1 year) 
