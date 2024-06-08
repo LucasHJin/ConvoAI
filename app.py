@@ -1,5 +1,6 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 import os
+import subprocess
 
 app = Flask(__name__)
 
@@ -10,9 +11,18 @@ def read_file(filepath):
 @app.route('/')
 def index():
     questions = read_file('q_output.txt')
-    answers = read_file('a_output.txt')
+    answers = read_file('response.txt')
     qa_pairs = zip(questions, answers)
     return render_template('index.html', qa_pairs=qa_pairs)
+
+@app.route('/start-recording', methods=['POST'])
+def start_recording():
+    try:
+        subprocess.Popen(["python", "./analyze_text.py"])
+        subprocess.Popen(["python", "./voice_input.py"])
+        return jsonify(success=True)
+    except Exception as e:
+        return jsonify(success=False, error=str(e))
 
 @app.route('/upload', methods=['POST'])
 def upload():
