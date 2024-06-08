@@ -1,1 +1,47 @@
-It appears that you have uploaded an image of a cute puppy and not a resume. If you intended to share a resume for summarization, please upload the correct document or text-based information, and I would be happy to help!
+ Lucas Jin 
+ Ottawa, Ontario • (613) 709-2492  Email:  kblaz er20@gmail.c om 
+ Linkedin:  linkedin.c om/in/luc as--jin
+ Github:  github.c om/Luc asHJin 
+ Devpos t:  devpos t.com/kblaz er20 
+ Personable high school junior with excellent interpersonal skills and an interest in technology and AI. Desire to 
+ learn and proficiency in programming demonstrated through outstanding academic record and a multitude of 
+ extracurricular activities. 
+ EDUCATION 
+ Merivale High School, ON 
+ Expected graduation: 2025 
+ GPA: 4.0 
+ ⼀  Flourishing in the International Baccalaureate Program 
+ ⼀  Managing Mock Trial Club activities as an executive. 
+ EXPERIENCE 
+ StudySphere - uOttaHack 6  March/2024 
+ ⼀  Created a studying website for Ottawa’s biggest hackathon. 
+ ⼀  Worked  and  taught  teammates  how  to  implement  various  backend  functionalities  with  Python, 
+ SQLAlchemy and Flask: User authentication, uploading questions and answers, searching questions. 
+ Zenith Workout App  November/2023 - Present 
+ ⼀  Created a passion project for tracking workouts with attention to UI and UX. 
+ ⼀  Implemented using SwiftUI and XCode. 
+ Core Programmer - Sparkling H2O FRC Team 8729  August/2023 - Present 
+ ⼀  Created time-based and command-based programs in Java. 
+ ⼀  Implementing a swerve drivetrain and April tag vision trackers. 
+ Core Programmer - Merivale High School (Vex Robotics)  October/2023 - December/2023 
+ ⼀  Used  C++  to  code  the  autonomous  period  and  commands  for  a  defensive  robot  for  the  Over-Under 
+ competition. 
+ Farm Boy Cashier  May/2023 - July/2023 
+ ⼀  Provided  exceptional  customer  service  by  addressing  inquiries,  resolving  issues,  and  ensuring  a 
+ positive shopping experience. 
+ EcoHacks Hackathon  September/2022 
+ ⼀  Created a website to educate people on recycling for an online hackathon with 600 participants. 
+ ⼀  First  exposure  to  web  development;  performed  research  and  gained  minimal  experience  relating  to 
+ handling databases by learning from teammates using JavaScript and MongoDB. 
+ AWARDS 
+ ⼀  First place in National Mock Trial Competition (  Champions  Cup 2022 - Dominion Mock Trial  ) 
+ ⼀  School Champion (  Fryer Mathematical Competition 2022  - Waterloo  ) 
+ ⼀  60/75 on CCC Junior - Distinction (  Canadian Computing  Contest 2023 - Waterloo  ) 
+ SKILLS  CODING LANGUAGES 
+ ⼀  Teamwork 
+ ⼀  Adaptability 
+ ⼀  Problem solving skills 
+ ⼀  Decision making skills  ⼀  Python (3 years) 
+ ⼀  C++ (1 year) 
+ ⼀  Swift (<1 year) 
+ ⼀  Java (<1 year) 

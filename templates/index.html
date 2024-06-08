@@ -14,31 +14,57 @@
             <label class="block mb-2 text-sm font-medium text-sky-700" for="file_input">Upload Resume</label>
             <input class="block w-full text-sm text-white border border-gray-300 rounded-lg cursor-pointer bg-sky-700 focus:outline-none" aria-describedby="file_input_help" id="file_input" name="image" type="file">
             <p class="mt-1 text-sm text-sky-700" id="file_input_help">PNG, JPG, WEBP.</p>
-            <button
+            <button id="submitResume"
         class="text-sky-600 hover:text-white border border-sky-600 hover:bg-sky-700 focus:ring-4 focus:outline-none focus:ring-sky-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-8 mt-4" type="submit">
         Submit Resume</button>
         
         </form>
         <button
-        id="recordButton" class="text-sky-600 hover:text-white border border-sky-600 hover:bg-sky-700 focus:ring-4 focus:outline-none focus:ring-sky-500 font-medium rounded-lg text-md px-5 py-2.5 text-center me-2 mb-2 mt-4">Click
+        id="recordButton" class="w-72 text-lime-600 hover:text-white border border-lime-600 hover:bg-lime-700 focus:ring-4 focus:outline-none focus:ring-lime-500 font-medium rounded-lg text-md px-5 py-2.5 text-center me-2 mb-2 mt-4">Click
         to begin recording</button>
         <button id="stopButton"
-         class="text-sky-600 hover:text-white border border-sky-600 hover:bg-sky-700 focus:ring-4 focus:outline-none focus:ring-sky-500 font-medium rounded-lg text-md px-5 py-2.5 text-center me-2 mb-32 mt-4">Click
+         class="w-72 text-red-600 hover:text-white border border-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-500 font-medium rounded-lg text-md px-5 py-2.5 text-center me-2 mb-32 mt-4">Click
         to stop recording</button>
     </div>
-    <div class="flex flex-col justify-center items-center">
+    <div class="flex flex-col justify-center items-center" id="qa-container">
         {% for question, answer in qa_pairs %}
         <div class="bg-sky-700 p-2 border border-2 rounded-lg border-gray-200 w-3/5 mb-4">
             <p class="text-white text-2xl mb-8">
-                Question: {{ question }}
+                <strong>Question:</strong> {{ question }}
             </p>
-            <p class="text-white text-right text-2xl mb-8">
-                Answer: {{ answer }}
+            <p class="text-white text-2xl mb-8">
+                <strong>Answer:</strong> {{ answer }}
             </p>
         </div>
         {% endfor %}
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
     <script>
+        var socket = io();
+
+        socket.on('new_qa', function(data) {
+            var container = document.getElementById('qa-container');
+            var qaDiv = document.createElement('div');
+            qaDiv.classList.add('bg-sky-700', 'p-2', 'border', 'border-2', 'rounded-lg', 'border-gray-200', 'w-3/5', 'mb-4');
+            qaDiv.innerHTML = `
+                <p class="text-white text-2xl mb-8"><strong>Question:</strong> ${data.question}</p>
+                <p class="text-white text-2xl mb-8"><strong>Answer:</strong> ${data.answer}</p>
+            `;
+            container.appendChild(qaDiv);
+        });
+
+        document.getElementById("submitResume").addEventListener("click", function() {
+            fetch("/submit-resume", {
+                method: "POST"
+            }).then(response => {
+                if (response.ok) {
+                    alert("Resume Submitted!");
+                } else {
+                    alert("Failed to submit resume.");
+                }
+            });
+        });
+
         document.getElementById("recordButton").addEventListener("click", function() {
             fetch("/start-recording", {
                 method: "POST"
@@ -50,6 +76,7 @@
                 }
             });
         });
+
         document.getElementById("stopButton").addEventListener("click", function() {
             fetch("/stop-recording", {
                 method: "POST"
@@ -63,5 +90,4 @@
         });
     </script>
 </body>
-
 </html>
