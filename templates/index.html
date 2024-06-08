@@ -17,10 +17,14 @@
             <button
         class="text-sky-600 hover:text-white border border-sky-600 hover:bg-sky-700 focus:ring-4 focus:outline-none focus:ring-sky-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-8 mt-4" type="submit">
         Submit Resume</button>
+        
         </form>
         <button
-        id="recordButton" class="text-sky-600 hover:text-white border border-sky-600 hover:bg-sky-700 focus:ring-4 focus:outline-none focus:ring-sky-500 font-medium rounded-lg text-md px-5 py-2.5 text-center me-2 mb-32 mt-4">Click
+        id="recordButton" class="text-sky-600 hover:text-white border border-sky-600 hover:bg-sky-700 focus:ring-4 focus:outline-none focus:ring-sky-500 font-medium rounded-lg text-md px-5 py-2.5 text-center me-2 mb-2 mt-4">Click
         to begin recording</button>
+        <button id="stopButton"
+         class="text-sky-600 hover:text-white border border-sky-600 hover:bg-sky-700 focus:ring-4 focus:outline-none focus:ring-sky-500 font-medium rounded-lg text-md px-5 py-2.5 text-center me-2 mb-32 mt-4">Click
+        to stop recording</button>
     </div>
     <div class="flex flex-col justify-center items-center">
         {% for question, answer in qa_pairs %}
@@ -43,6 +47,17 @@
                     alert("Recording started!");
                 } else {
                     alert("Failed to start recording.");
+                }
+            });
+        });
+        document.getElementById("stopButton").addEventListener("click", function() {
+            fetch("/stop-recording", {
+                method: "POST"
+            }).then(response => {
+                if (response.ok) {
+                    alert("Recording stopped!");
+                } else {
+                    alert("Failed to stop recording.");
                 }
             });
         });
