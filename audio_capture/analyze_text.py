@@ -6,7 +6,7 @@ import re
 import os
 
 def erase_file():
-    with open("q_output.txt", "w") as f:
+    with open("./txt/q_output.txt", "w") as f:
         pass
 
 def is_question(text):
@@ -87,4 +87,4 @@ def watch_file(filename, output_filename):
 erase_file()
 
 #watch file start
-watch_file('output.txt', 'q_output.txt')
+watch_file('./txt/output.txt', './txt/q_output.txt')

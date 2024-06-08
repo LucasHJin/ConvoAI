@@ -7,7 +7,7 @@ import time
 r = sr.Recognizer() 
 
 def erase_file():
-    with open("output.txt", "w") as f:
+    with open("./txt/output.txt", "w") as f:
         pass
 
 def get_input():
@@ -35,7 +35,7 @@ def get_input():
 
 def give_string(text):
     # add text to a file
-    with open("output.txt", "a") as f:
+    with open("./txt/output.txt", "a") as f:
         f.write(text + "\n")
 
 # starting the recording
