@@ -10,9 +10,9 @@
 <body>
     <h1 class="p-5 text-sky-700 text-center text-5xl">Welcome to ConvoAI!</h1>
     <div class="flex flex-col justify-center items-center">
-        <form class="flex flex-col">
+        <form class="flex flex-col" action="/upload" method="post" enctype="multipart/form-data">
             <label class="block mb-2 text-sm font-medium text-sky-700" for="file_input">Upload Resume</label>
-            <input class="block w-full text-sm text-white border border-gray-300 rounded-lg cursor-pointer bg-sky-700 focus:outline-none" aria-describedby="file_input_help" id="file_input" type="file">
+            <input class="block w-full text-sm text-white border border-gray-300 rounded-lg cursor-pointer bg-sky-700 focus:outline-none" aria-describedby="file_input_help" id="file_input" name="image" type="file">
             <p class="mt-1 text-sm text-sky-700" id="file_input_help">PNG, JPG, WEBP.</p>
             <button
         class="text-sky-600 hover:text-white border border-sky-600 hover:bg-sky-700 focus:ring-4 focus:outline-none focus:ring-sky-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-8 mt-4" type="submit">
