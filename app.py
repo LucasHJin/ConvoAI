@@ -1,29 +1,45 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
+from flask_socketio import SocketIO, emit
 import os
 import subprocess
 
 app = Flask(__name__)
+socketio = SocketIO(app)
 
 def read_file(filepath):
     with open(filepath, 'r') as file:
         return [line.strip() for line in file.readlines()]
 
+def read_file2(filepath):
+    with open(filepath, 'r') as file:
+        return [line for line in file.read().split('!!!')]
+
 @app.route('/')
 def index():
     questions = read_file('./txt/q_output.txt')
-    answers = read_file('./txt/response.txt')
+    answers = read_file2('./txt/response.txt')
     qa_pairs = zip(questions, answers)
     return render_template('index.html', qa_pairs=qa_pairs)
+
+@app.route('/submit-resume', methods=['POST'])
+def submit_resume():
+    try:
+        subprocess.Popen(["python", "./audio_capture/image_analysis.py"])
+        return jsonify(success=True)
+    except Exception as e:
+        return jsonify(success=False, error=str(e))
 
 @app.route('/start-recording', methods=['POST'])
 def start_recording():
     try:
         subprocess.Popen(["python", "./audio_capture/analyze_text.py"])
         subprocess.Popen(["python", "./audio_capture/voice_input.py"])
+        subprocess.Popen(["python", "./audio_capture/text_answers.py"])
+        subprocess.Popen(["python", "./audio_capture/parse.py"])
         return jsonify(success=True)
     except Exception as e:
         return jsonify(success=False, error=str(e))
-    
+
 @app.route('/stop-recording', methods=['POST'])
 def stop_recording():
     try:
@@ -35,27 +51,21 @@ def stop_recording():
 
 @app.route('/upload', methods=['POST'])
 def upload():
-    # Specify the folder path you want to clear
     folder_to_clear = 'uploads'
 
-    # Clear the folder
     clear_folder(folder_to_clear)
 
-    # Check if the post request has the file part
     if 'image' not in request.files:
         return 'No file part'
-    
+
     file = request.files['image']
-    
-    # If the user does not select a file, the browser submits an empty file without a filename
+
     if file.filename == '':
         return 'No selected file'
 
-    # Save the file to the folder
     file.save(os.path.join(folder_to_clear, file.filename))
-    
-    return redirect(url_for('index'))
 
+    return redirect(url_for('index'))
 
 def clear_folder(folder_path):
     for filename in os.listdir(folder_path):
@@ -70,5 +80,4 @@ def clear_folder(folder_path):
             print(f"Failed to delete {file_path}. Reason: {e}")
 
 if __name__ == '__main__':
-    extra_files = ['./txt/response.txt', './txt/q_output.txt', './txt/output.txt']
-    app.run(debug=True, extra_files=extra_files)
+    socketio.run(app, debug=True)
