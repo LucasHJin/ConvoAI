@@ -15,13 +15,15 @@
         to begin recording</button>
     </div>
     <div class="flex flex-col justify-center items-center">
-        <div class="bg-sky-700 p-2 border border-2 rounded-lg border-gray-200 w-1/2">
+        <div class="bg-sky-700 p-2 border border-2 rounded-lg border-gray-200 w-1/2 mb-4">
+            {% for question, answer in qa_pairs %}
             <p class="text-white text-lg">
-                Question: What are your best qualities?
+                Question: {{ question }}
             </p>
-            <p class="text-white text-right text-lg">
-                Answer: Calculating...
+            <p class="text-white text-right text-lg mb-8">
+                Answer: {{ answer }}
             </p>
+            {% endfor %}
         </div>
     </div>
 </body>
