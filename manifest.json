@@ -1,0 +1,11 @@
+{
+  "name": "ConvoAI",
+  "version": "1.0.0",
+  "description": "AI that allows you to vocalize prompts in interviews.",
+  "manifest_version": 3,
+  "author": "Lucas Jin",
+  "action":{
+      "default_popup": "index.html",
+      "default_title": "Welcome to ConvoAI"
+  }
+}
