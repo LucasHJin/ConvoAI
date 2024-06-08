@@ -19,12 +19,11 @@ def write_to_file(response):
     # this code removes newlines
     response = ''.join([line for line in response.split('\n') if line.strip()])
 
-    with open('./txt/response.txt', 'w') as file:
+    with open('./txt/response.txt', 'a') as file:
         file.write(response)
     return response
 
 company_name = 'Apple'
-prompt = 'What is your name?'
 
 with open("./txt/resume_info.txt", "r") as file:
     # Read the contents of the file into the variable 'resume'
@@ -32,7 +31,14 @@ with open("./txt/resume_info.txt", "r") as file:
 
 # print(resume)
 
-write_to_file(ask(prompt, 'Royal Bank of Canada', resume).strip())
+# write_to_file(ask(prompt, 'Royal Bank of Canada', resume).strip())
+    
+with open("txt/q_output.txt") as f:
+    for q in f.read().split('\n'):
+        print("QUESTION", q) 
+        response = ask(q, 'company_name', resume).strip()
+        print(response)
+        write_to_file(response)
 
 
 
