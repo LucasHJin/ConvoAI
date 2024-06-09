@@ -1,34 +1,47 @@
 <!DOCTYPE html>
-<html class="bg-gradient-to-r from-gray-200 to-sky-200 font-mono" lang="en">
+<html class="bg-sky-200 font-sans" lang="en">
 
 <head>
     <meta charset="UTF-8">
     <title>ConvoAI</title>
     <link href="{{url_for('static',filename='css/main.css')}}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
-    <h1 class="p-5 text-sky-700 text-center text-5xl">Welcome to ConvoAI!</h1>
-    <div class="flex flex-col justify-center items-center">
-        <form class="flex flex-col" action="/upload" method="post" enctype="multipart/form-data">
-            <label class="block mb-2 text-sm font-medium text-sky-700" for="file_input">Upload Resume</label>
-            <input class="block w-full text-sm text-white border border-gray-300 rounded-lg cursor-pointer bg-sky-700 focus:outline-none" aria-describedby="file_input_help" id="file_input" name="image" type="file">
-            <p class="mt-1 text-sm text-sky-700" id="file_input_help">PNG, JPG, WEBP.</p>
-            <button id="submitResume"
-        class="text-sky-600 hover:text-white border border-sky-600 hover:bg-sky-700 focus:ring-4 focus:outline-none focus:ring-sky-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-8 mt-4" type="submit">
-        Submit Resume</button>
-        
-        </form>
-        <button
-        id="recordButton" class="w-72 text-lime-600 hover:text-white border border-lime-600 hover:bg-lime-700 focus:ring-4 focus:outline-none focus:ring-lime-500 font-medium rounded-lg text-md px-5 py-2.5 text-center me-2 mb-2 mt-4">Click
-        to begin recording</button>
-        <button id="stopButton"
-         class="w-72 text-red-600 hover:text-white border border-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-500 font-medium rounded-lg text-md px-5 py-2.5 text-center me-2 mb-32 mt-4">Click
-        to stop recording</button>
+    <div class="flex justify-center items-center">
+        <img class="h-64" src="../static/images/Convo.png">
+        <h1 class="p-5 text-sky-700 text-center text-5xl"><strong>Welcome to ConvoAI!</strong></h1>
     </div>
+    <div class="flex justify-center items-end">
+        <div class="flex justify-between items-end w-4/5">
+            <div class="flex flex-col justify-center items-center">
+                <form class="flex flex-col" action="/upload" method="post" enctype="multipart/form-data">
+                    <div class="flex justify-center items-end">
+                        <div class="flex-col items-end mr-2">
+                            <label class="block text-sm font-medium text-sky-700" for="file_input">Upload Resume (PDF, PNG, JPG, WEBP.)</label>
+                            <input class="block p-2 w-full text-sm text-white rounded-lg border border-white cursor-pointer bg-sky-700 focus:outline-none" aria-describedby="file_input_help" id="file_input" name="image" type="file">
+                            <!-- <p class="text-sm text-sky-700" id="file_input_help"></p> -->
+                        </div>
+                        <button id="submitResume"
+                    class="text-sky-600 hover:text-white border border-sky-600 hover:bg-sky-700 focus:ring-4 focus:outline-none focus:ring-sky-500 font-medium rounded-lg text-sm p-2.5 text-center" type="submit">
+                    Submit Resume</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="flex justify-center items-end">
+                <button
+                id="recordButton" class="w-24 text-lime-600 hover:text-white border border-lime-600 hover:bg-lime-700 focus:ring-4 focus:outline-none focus:ring-lime-500 font-medium rounded-lg text-md px-5 py-2.5 text-center mr-2">Start</button>
+                <button id="stopButton"
+                    class="w-24 text-red-600 hover:text-white border border-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-500 font-medium rounded-lg text-md px-5 py-2.5 text-center">Stop</button>
+            </div>
+        </div>
+    </div> 
+        
     <div class="flex flex-col justify-center items-center">
-        <div id="qa-container" class="bg-sky-700 p-2 border border-2 rounded-lg border-gray-200 w-3/5 mb-4">
+        <div id="qa-container" class="bg-sky-700 p-2 border border-white rounded-lg w-4/5 mt-2">
             <!-- {% for question, answer in qa_pairs %}
             <div class="bg-sky-700 p-2 border border-2 rounded-lg border-gray-200 w-3/5 mb-4">
                 <p class="text-white text-xl mb-8">
@@ -79,7 +92,7 @@
             $.getJSON('/data', function(data) {
                 $('#qa-container').empty();
                 data.forEach(function(qa) {
-                    $('#qa-container').append('<p class="text-white" ><strong>Q:</strong> ' + qa[0] + '<br><strong>A:</strong> ' + qa[1] + '</p>');
+                    $('#qa-container').append('<p class="text-white" ><strong>Q:</strong> ' + qa[0] + '<br><br><strong>A:</strong> ' + qa[1] + '</p>');
                 });
             });
         }
