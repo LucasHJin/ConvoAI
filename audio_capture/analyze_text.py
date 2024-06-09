@@ -4,6 +4,7 @@ import nltk
 import time
 import re
 import os
+import text_answers
 
 def erase_file():
     with open("./txt/q_output.txt", "w") as f:
@@ -82,9 +83,10 @@ def watch_file(filename, output_filename):
                         if is_question(line):
                             output_file.write(line)
                             output_file.write("\n")
+                            text_answers.write_to_file(text_answers.ask(line, text_answers.company, text_answers.resume))
                             
-#erase previous content                            
-erase_file()
+# #erase previous content                            
+# erase_file()
 
-#watch file start
-watch_file('./txt/output.txt', './txt/q_output.txt')
+# #watch file start
+# watch_file('./txt/output.txt', './txt/q_output.txt')

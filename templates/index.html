@@ -16,8 +16,8 @@
     </div>
     <div class="flex justify-center items-end">
         <div class="flex justify-between items-end w-4/5">
-            <div class="flex flex-col justify-center items-center">
-                <form class="flex flex-col" action="/upload" method="post" enctype="multipart/form-data">
+            <div class="flex flex-row justify-center items-center">
+                <form class="flex flex-col mr-2" action="/upload" method="post" enctype="multipart/form-data">
                     <div class="flex justify-center items-end">
                         <div class="flex-col items-end mr-2">
                             <label class="block text-sm font-medium text-sky-700" for="file_input">Upload Resume (PDF, PNG, JPG, WEBP.)</label>
@@ -29,13 +29,25 @@
                     Submit Resume</button>
                     </div>
                 </form>
+                <form class="flex flex-col" action="/upload_company" method="post">
+                    <div class="flex justify-center items-end">
+                        <div class="flex-col items-end mr-2">
+                            <label class="block text-sm font-medium text-sky-700" for="company">Company?</label>
+                            <input class="block p-2 w-full text-sm text-white rounded-lg border border-white cursor-pointer bg-sky-700 focus:outline-none" id="company" name="company" type="text">
+                            <!-- <p class="text-sm text-sky-700" id="file_input_help"></p> -->
+                        </div>
+                        <button id="submitCompany"
+                    class="text-sky-600 hover:text-white border border-sky-600 hover:bg-sky-700 focus:ring-4 focus:outline-none focus:ring-sky-500 font-medium rounded-lg text-sm p-2.5 text-center" type="submit">
+                    Submit Company</button>
+                    </div>
+                </form>
             </div>
             
-            <div class="flex justify-center items-end">
+            <div class="flex justify-center items-center">
                 <button
-                id="start" class="w-24 text-lime-600 hover:text-white border border-lime-600 hover:bg-lime-700 focus:ring-4 focus:outline-none focus:ring-lime-500 font-medium rounded-lg text-md px-5 py-2.5 text-center mr-2">Start</button>
-                <button id="stop"
-                    class="w-24 text-red-600 hover:text-white border border-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-500 font-medium rounded-lg text-md px-5 py-2.5 text-center">Stop</button>
+                id="interview" class="w-24 text-lime-600 hover:text-white border border-lime-600 hover:bg-lime-700 focus:ring-4 focus:outline-none focus:ring-lime-500 font-medium rounded-lg text-md px-5 py-2.5 text-center mr-2">Interv</button>
+                <button id="self"
+                    class="w-24 text-red-600 hover:text-white border border-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-500 font-medium rounded-lg text-md px-5 py-2.5 text-center">Self</button>
             </div>
         </div>
     </div> 
@@ -67,15 +79,15 @@
             });
         });
         $(document).ready(function() {
-            $('#start').click(function() {
-                $.post('/start', function(response) {
+            $('#interview').click(function() {
+                $.post('/interview', function(response) {
                     console.log(response.status);
                 });
             });
         });
         $(document).ready(function() {
-            $('#stop').click(function() {
-                $.post('/stop', function(response) {
+            $('#self').click(function() {
+                $.post('/self', function(response) {
                     console.log(response.status);
                 });
             });

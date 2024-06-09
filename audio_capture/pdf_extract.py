@@ -4,7 +4,7 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 openai.api_key = os.getenv('OPENAI_API_KEY')
-model = "gpt-3.5-turbo"
+model = "gpt-4o"
 
 def extract_text_from_pdf(pdf_path):
     text = ""

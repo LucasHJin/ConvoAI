@@ -25,7 +25,7 @@ def get_questions_and_answers():
 def index():
     return render_template('index.html')
 
-@app.route('/start', methods=['POST'])
+@app.route('/interview', methods=['POST'])
 def start_recording():
     try:
         subprocess.Popen(["python", "./audio_capture/computer_vinput.py"])
@@ -33,10 +33,13 @@ def start_recording():
     except Exception as e:
         return jsonify(success=False, error=str(e))
 
-# @app.route('/stop', methods=['POST'])
-# def stop_recording():
-#     computer_vinput.stop_recording()
-#     return jsonify({'status': 'stopped'})
+@app.route('/self', methods=['POST'])
+def start_selftalk():
+    try:
+        subprocess.Popen(["python", "./audio_capture/voice_input.py"])
+        return jsonify(success=True)
+    except Exception as e:
+        return jsonify(success=False, error=str(e))
 
 @app.route('/data')
 def data():
@@ -68,6 +71,19 @@ def upload():
     file.save(os.path.join(folder_to_clear, file.filename))
 
     return redirect(url_for('index'))
+
+@app.route('/upload_company', methods=['POST'])
+def upload_company():
+    company = request.form.get('company')
+    print(company)
+    if company:
+        print("hel")
+        with open("company.txt", "w") as file:
+            file.write(company)
+        return redirect(url_for('index'))
+    else:
+        return 'Invalid company name.'
+
 
 def clear_folder(folder_path):
     for filename in os.listdir(folder_path):

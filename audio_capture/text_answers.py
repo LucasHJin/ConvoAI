@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 openai.api_key = os.getenv('OPENAI_API_KEY')
-model = "gpt-3.5-turbo"
+model = "gpt-4o"
 # USE FOR DEMO
 # model = "gpt-4o"
 
@@ -32,15 +32,16 @@ def write_to_file(response):
 
 # erase_file()
 
-# clear response.txt
-with open("./txt/response.txt", "w") as file: 1
+# # clear response.txt
+# with open("./txt/response.txt", "w") as file: 1
 
-company = 'RBC'
-# resume = 'ERROR!'
-# with open("./txt/resume_info.txt", "r") as file:
-#     # Read the contents of the file into the variable 'resume'
-#     resume = file.read()
-
+company = 'ERROR!'
+resume = 'ERROR!'
+with open("./txt/resume_info.txt", "r") as file:
+    # Read the contents of the file into the variable 'resume'
+    resume = file.read()
+with open("./company.txt", "r") as file:
+    company = file.read()
 # with open("./txt/q_output.txt", "r") as file:
 #     q = file.read().split('\n')[-1]
 #     write_to_file(ask(q, company, resume))

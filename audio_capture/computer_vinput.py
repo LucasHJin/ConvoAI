@@ -11,6 +11,12 @@ CHUNK = 1024
 RECORD_SECONDS = 10
 WAVE_OUTPUT_FILENAME = "recorded_audio.wav"
 
+def erase_file():
+    with open("./txt/q_output.txt", "w") as f:
+        pass
+
+erase_file()
+
 # Function to record audio
 def record_audio():
     audio = pyaudio.PyAudio()

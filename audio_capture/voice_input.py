@@ -1,8 +1,8 @@
-# recognize_voices.py
 import speech_recognition as sr
 import pyttsx3 
 import os
 import time
+import analyze_text
 
 r = sr.Recognizer() 
 
@@ -13,6 +13,11 @@ def erase_file():
 def erase_file2():
     with open("./txt/response.txt", "w") as f:
         pass
+
+def erase_file3():
+    with open("./txt/q_output.txt", "w") as f:
+        pass
+
 
 def get_input():
     try:
@@ -45,16 +50,18 @@ def give_string(text):
 # starting the recording
 erase_file()
 erase_file2()
+erase_file3()
 
-stop_file = "stop.txt"
+# Get the current time
+start_time = time.time()
+max_duration = 10  # Maximum duration in seconds
 
-while not os.path.exists(stop_file):
+while time.time() - start_time < max_duration:
     text = get_input()
     if text:
         give_string(text)
         print("Wrote Text")
+        analyze_text.watch_file("./txt/output.txt", "./txt/q_output.txt")
     time.sleep(1)  # sleep for a bit to avoid busy waiting
 
-# Cleanup: Remove the stop file after stopping
-os.remove(stop_file)
-print("Recording stopped.")
+print("Recording stopped after 10 seconds.")
