@@ -15,7 +15,12 @@ def erase_file():
     with open("./txt/q_output.txt", "w") as f:
         pass
 
+def erase_file2():
+    with open("./txt/response.txt", "w") as f:
+        pass
+
 erase_file()
+erase_file2()
 
 # Function to record audio
 def record_audio():
