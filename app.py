@@ -14,7 +14,7 @@ def read_file(filepath):
     
 def read_file2(filepath):
     with open(filepath, 'r') as file:
-        return [line for line in file.read().split('!!!')]
+        return [line.replace('\n', '<br>') for line in file.read().split('!!!')]
     
 def get_questions_and_answers():
     questions = read_file('./txt/q_output.txt')

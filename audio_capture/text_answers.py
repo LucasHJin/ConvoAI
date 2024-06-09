@@ -12,7 +12,7 @@ def erase_file():
         pass
 
 def ask(question, company, resume):
-    prompt = f"Pretend you are in an interview for {company}. This is your resume information: {resume}. Only mention aspects from the resume if necessary. For technical questions, you do not need to mention the resume. Answer in first person, using jot-notes and only include the most pertninent information. " + question
+    prompt = f"Pretend you are in an interview for {company}. This is your resume information: {resume}. Only mention aspects from the resume if necessary. For technical questions, you do not need to mention the resume. Answer in first person, using jot-notes, don't add any extra characters such as asterisks or hashtags for the purpose of bolding, italicizing, etc. Only include the most pertninent information that directly answers the question and don't try to answer other questions. " + question
     response = openai.ChatCompletion.create(
         model=model,
         messages=[{"role": "user", "content": prompt}],
