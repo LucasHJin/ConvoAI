@@ -33,8 +33,8 @@
             
             <div class="flex justify-center items-end">
                 <button
-                id="recordButton" class="w-24 text-lime-600 hover:text-white border border-lime-600 hover:bg-lime-700 focus:ring-4 focus:outline-none focus:ring-lime-500 font-medium rounded-lg text-md px-5 py-2.5 text-center mr-2">Start</button>
-                <button id="stopButton"
+                id="start" class="w-24 text-lime-600 hover:text-white border border-lime-600 hover:bg-lime-700 focus:ring-4 focus:outline-none focus:ring-lime-500 font-medium rounded-lg text-md px-5 py-2.5 text-center mr-2">Start</button>
+                <button id="stop"
                     class="w-24 text-red-600 hover:text-white border border-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-500 font-medium rounded-lg text-md px-5 py-2.5 text-center">Stop</button>
             </div>
         </div>
@@ -66,37 +66,28 @@
                 }
             });
         });
-        document.getElementById("recordButton").addEventListener("click", function() {
-            fetch("/start-recording", {
-                method: "POST"
-            }).then(response => {
-                if (response.ok) {
-                    alert("Recording started!");
-                } else {
-                    alert("Failed to start recording.");
-                }
+        $(document).ready(function() {
+            $('#start').click(function() {
+                $.post('/start', function(response) {
+                    console.log(response.status);
+                });
             });
         });
-        document.getElementById("stopButton").addEventListener("click", function() {
-            fetch("/stop-recording", {
-                method: "POST"
-            }).then(response => {
-                if (response.ok) {
-                    alert("Recording stopped!");
-                } else {
-                    alert("Failed to stop recording.");
-                }
+        $(document).ready(function() {
+            $('#stop').click(function() {
+                $.post('/stop', function(response) {
+                    console.log(response.status);
+                });
             });
         });
         function loadQA() {
             $.getJSON('/data', function(data) {
                 $('#qa-container').empty();
                 data.forEach(function(qa) {
-                    $('#qa-container').append('<p class="text-white" ><strong>Q:</strong> ' + qa[0] + '<br><br><strong>A:</strong> ' + qa[1] + '</p>');
+                    $('#qa-container').append('<p class="text-white m-2" ><strong>Q:</strong> ' + qa[0] + '<br><br><strong>A:</strong> ' + qa[1] + '</p>');
                 });
             });
         }
-
         $(document).ready(function() {
             loadQA();
             setInterval(loadQA, 1000); // Update every 5 seconds

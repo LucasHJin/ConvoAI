@@ -1,8 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 from flask_socketio import SocketIO, emit
-import os
 import subprocess
 import threading
+import sys
+import os
 
 app = Flask(__name__)
 socketio = SocketIO(app)
@@ -24,6 +25,19 @@ def get_questions_and_answers():
 def index():
     return render_template('index.html')
 
+@app.route('/start', methods=['POST'])
+def start_recording():
+    try:
+        subprocess.Popen(["python", "./audio_capture/computer_vinput.py"])
+        return jsonify(success=True)
+    except Exception as e:
+        return jsonify(success=False, error=str(e))
+
+# @app.route('/stop', methods=['POST'])
+# def stop_recording():
+#     computer_vinput.stop_recording()
+#     return jsonify({'status': 'stopped'})
+
 @app.route('/data')
 def data():
     qa_data = get_questions_and_answers()
@@ -33,26 +47,6 @@ def data():
 def submit_resume():
     try:
         subprocess.Popen(["python", "./audio_capture/image_analysis.py"])
-        return jsonify(success=True)
-    except Exception as e:
-        return jsonify(success=False, error=str(e))
-
-@app.route('/start-recording', methods=['POST'])
-def start_recording():
-    try:
-        subprocess.Popen(["python", "./audio_capture/computer_vinput.py"])
-        # subprocess.Popen(["python", "./audio_capture/analyze_text.py"])
-        # subprocess.Popen(["python", "./audio_capture/voice_input.py"])
-        subprocess.Popen(["python", "./audio_capture/text_answers.py"])
-        return jsonify(success=True)
-    except Exception as e:
-        return jsonify(success=False, error=str(e))
-
-@app.route('/stop-recording', methods=['POST'])
-def stop_recording():
-    try:
-        with open("stop.txt", "w") as f:
-            pass  # create an empty stop file
         return jsonify(success=True)
     except Exception as e:
         return jsonify(success=False, error=str(e))
@@ -98,8 +92,8 @@ def background_task():
 
 
 if __name__ == '__main__':
-    thread = threading.Thread(target=background_task)
-    thread.daemon = True
-    thread.start()
+    # thread = threading.Thread(target=background_task)
+    # thread.daemon = True
+    # thread.start()
 
     socketio.run(app, debug=True)

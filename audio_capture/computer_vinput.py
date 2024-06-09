@@ -1,37 +1,78 @@
-import sounddevice as sd
-import numpy as np
+import pyaudio
+import wave
 import speech_recognition as sr
-import soundfile as sf
+import parse_questions_chat
 
-sample_rate = 44100
-duration = 15
+# Parameters for recording
+FORMAT = pyaudio.paInt16
+CHANNELS = 1
+RATE = 44100
+CHUNK = 1024
+RECORD_SECONDS = 10
+WAVE_OUTPUT_FILENAME = "recorded_audio.wav"
 
-recognizer = sr.Recognizer()
+# Function to record audio
+def record_audio():
+    audio = pyaudio.PyAudio()
 
-def erase_file():
-    with open("./txt/output.txt", "w") as f:
-        pass
+    # Start recording
+    stream = audio.open(format=FORMAT, channels=CHANNELS,
+                        rate=RATE, input=True,
+                        frames_per_buffer=CHUNK)
+    print("Recording...")
+    frames = []
 
-def record_and_transcribe(output_file, sample_rate):
-    while True:            
-        recording = sd.rec(duration * sample_rate, samplerate=sample_rate, channels=2, device='BlackHole')
-        sd.wait() 
+    for i in range(0, int(RATE / CHUNK * RECORD_SECONDS)):
+        data = stream.read(CHUNK)
+        frames.append(data)
+    print("Recording finished.")
 
-        sf.write('temp_file.wav', recording, sample_rate)
+    # Stop and close the stream
+    stream.stop_stream()
+    stream.close()
+    audio.terminate()
 
+    # Save the recorded data as a WAV file
+    with wave.open(WAVE_OUTPUT_FILENAME, 'wb') as wf:
+        wf.setnchannels(CHANNELS)
+        wf.setsampwidth(audio.get_sample_size(FORMAT))
+        wf.setframerate(RATE)
+        wf.writeframes(b''.join(frames))
+
+# Function to transcribe audio
+def transcribe_audio():
+    recognizer = sr.Recognizer()
+    with sr.AudioFile(WAVE_OUTPUT_FILENAME) as source:
+        audio_data = recognizer.record(source)
+        print("Transcribing audio...")
         try:
-            with sr.AudioFile('temp_file.wav') as source:
-                audio_data = recognizer.record(source)
-                text = recognizer.recognize_google(audio_data)
-                with open(output_file, 'a') as f:
-                    f.write(text + ' ')
-                    print("Transcribed text:", text)
+            text = recognizer.recognize_google(audio_data)
+            print("Transcription: " + text)
+            with open("./txt/output.txt", "w") as f:
+                f.write(text)
+                parse_questions_chat.write(parse_questions_chat.ask(text))
+
         except sr.UnknownValueError:
-            print("Speech recognition could not understand the audio")
+            print("Google Speech Recognition could not understand the audio")
         except sr.RequestError as e:
-            print(f"Could not request results from Google Speech Recognition service; {e}")
+            print("Could not request results from Google Speech Recognition service; {0}".format(e))
 
+if __name__ == "__main__":
+    record_audio()
+    transcribe_audio()
 
-erase_file()
-output_file = "./txt/output.txt"
-record_and_transcribe(output_file, sample_rate)
+# def start_recording():
+#     record_audio()
+#     transcribe_audio()
+    
+#         # erase_file()
+#         # thread = threading.Thread(target=record_and_transcribe)
+#         # thread.start()
+
+# def stop_recording():
+#     print("recording stopped")
+
+# Example usage
+# start_recording()
+# time.sleep(60)  # Record for 60 seconds
+# stop_recording()

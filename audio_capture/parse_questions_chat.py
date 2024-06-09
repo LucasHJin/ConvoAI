@@ -29,12 +29,12 @@ with open("./txt/resume_info.txt", "r") as file:
 
 response = ask(text)
 
-
-with open("./txt/q_output.txt", "w") as file:
-    if response != None and response != '':
-        for i in response:
-            file.write(i)
-            file.write('\n')
-            if i != '':
-                print(i, "blah")
-                text_answers.write_to_file(text_answers.ask(i, text_answers.company, resume))
+def write(response):
+    with open("./txt/q_output.txt", "w") as file:
+        if response != None and response != '':
+            for i in response:
+                file.write(i)
+                file.write('\n')
+                if i != '':
+                    print(i)
+                    text_answers.write_to_file(text_answers.ask(i, text_answers.company, resume))
