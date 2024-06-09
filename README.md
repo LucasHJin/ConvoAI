@@ -16,7 +16,6 @@
 
 ## About the Project
 ConvoAI is a revolutionary AI extension, adding ease to interviews with the goal of helping countless people land jobs. In this rough job market, software programming opportunities are scarce and when they appear, one must grab hold of them. ConvoAI is able to help with this, providing information on various programming topics to overcome interview stress. It also is able to act as a personal assistant, allowing you to ask questions at any time rather than have to pull an AI model like Chat GPT to search.
-.hcraes ot TPG tahC ekil ledom IA nac llup ot evah 
 
 ## Prerequisites
 1. Ensure you have Python installed on your system. You can download it from [python.org](https://www.python.org/downloads/).
