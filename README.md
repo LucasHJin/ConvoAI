@@ -62,4 +62,4 @@ python app.py
     - [@LucasHJin](https://github.com/LucasHJin)
 - Owen Chen
     - owenchenyp@gmail.com
-    - [@brokentelescope](https://github.com/OwenChen07)
+    - [@OwenChen07](https://github.com/OwenChen07)
